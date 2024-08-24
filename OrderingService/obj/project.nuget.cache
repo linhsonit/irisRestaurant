@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "DDDFrXoI9YgTMHUkVLOv0bzXZjZlHl+EKUKcS6AOHVi/BRgjx3he7/e+DYzXcwkfj78hYSBId/HSJU1p3diA7Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\linhs\\source\\repos\\eCook\\OrderingService\\OrderingService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\linhs\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.19.5\\microsoft.visualstudio.azure.containers.tools.targets.1.19.5.nupkg.sha512"
+  ],
+  "logs": []
+}

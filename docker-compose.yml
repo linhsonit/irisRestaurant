@@ -1,0 +1,67 @@
+version: '3.9'
+services:
+  cooking-service:
+    build:
+        context: ./CookingService
+        dockerfile: Dockerfile
+    container_name: CookingService
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Production
+        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=eCook;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
+        - RABBIT_MQ_SERVER=rabbitmq
+        - RABBIT_MQ_USERNAME=guest
+        - RABBIT_MQ_PASSWORD=guest
+        - RABBITMQSETTINGS__EXCHANGENAME=OfferExchange
+        - RABBITMQSETTINGS__EXCHHANGETYPE=direct
+        - RABBITMQSETTINGS__QUEUENAME=offer_queue
+        - RABBITMQSETTINGS__ROUTEKEY=offer_route
+    ports:
+        - "4201:80"    
+  ordering-service:
+    build:
+        context: ./OrderingService
+        dockerfile: Dockerfile
+    container_name: OrderingService
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Production
+        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=eCook;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
+        - RABBIT_MQ_SERVER=rabbitmq
+        - RABBIT_MQ_USERNAME=guest
+        - RABBIT_MQ_PASSWORD=guest
+        - RABBITMQSETTINGS__EXCHANGENAME=OfferExchange
+        - RABBITMQSETTINGS__EXCHHANGETYPE=direct
+        - RABBITMQSETTINGS__QUEUENAME=offer_queue
+        - RABBITMQSETTINGS__ROUTEKEY=offer_route
+    ports:
+        - "4202:80"    
+  notification-service:
+    build:
+        context: ./NotificationService
+        dockerfile: Dockerfile
+    container_name: NotificationService
+    environment:
+        - ASPNETCORE_ENVIRONMENT=Production
+        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=eCook;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
+        - RABBIT_MQ_SERVER=rabbitmq
+        - RABBIT_MQ_USERNAME=guest
+        - RABBIT_MQ_PASSWORD=guest
+        - RABBITMQSETTINGS__EXCHANGENAME=OfferExchange
+        - RABBITMQSETTINGS__EXCHHANGETYPE=direct
+        - RABBITMQSETTINGS__QUEUENAME=offer_queue
+        - RABBITMQSETTINGS__ROUTEKEY=offer_route
+    ports:
+        - "4203:80"    
+  # sql:
+  #   image: "mcr.microsoft.com/mssql/server:2022-latest"
+  #   container_name: sql_database_2022
+  #   ports:
+  #     - "1433:1433" 
+  #   environment:
+  #     - ACCEPT_EULA=y
+  #     - SA_PASSWORD=A&VeryComplex123Password
+  # rabbitmq:
+  #   image: rabbitmq:3.13.6-management-alpine
+  #   container_name: 'rabbitmq'
+  #   ports:
+  #     - 5672:5672
+  #     - 15672:15672
