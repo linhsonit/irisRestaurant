@@ -10,6 +10,7 @@ C:\Users\linhs\source\repos\eCook\NotificationService\obj\Debug\net6.0\Notificat
 C:\Users\linhs\source\repos\eCook\NotificationService\obj\Debug\net6.0\NotificationService.AssemblyInfo.cs
 C:\Users\linhs\source\repos\eCook\NotificationService\obj\Debug\net6.0\NotificationService.csproj.CoreCompileInputs.cache
 C:\Users\linhs\source\repos\eCook\NotificationService\obj\Debug\net6.0\NotificationService.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\linhs\source\repos\eCook\NotificationService\obj\Debug\net6.0\NotificationService.sourcelink.json
 C:\Users\linhs\source\repos\eCook\NotificationService\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\linhs\source\repos\eCook\NotificationService\obj\Debug\net6.0\staticwebassets.development.json
 C:\Users\linhs\source\repos\eCook\NotificationService\obj\Debug\net6.0\staticwebassets\msbuild.NotificationService.Microsoft.AspNetCore.StaticWebAssets.props

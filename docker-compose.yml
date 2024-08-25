@@ -7,8 +7,8 @@ services:
     container_name: CookingService
     environment:
         - ASPNETCORE_ENVIRONMENT=Production
-        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=eCook;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
-        - RABBIT_MQ_SERVER=rabbitmq
+        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=CookingDb;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
+        - RABBIT_MQ_SERVER=rabbit_mq
         - RABBIT_MQ_USERNAME=guest
         - RABBIT_MQ_PASSWORD=guest
         - RABBITMQSETTINGS__EXCHANGENAME=OfferExchange
@@ -24,8 +24,8 @@ services:
     container_name: OrderingService
     environment:
         - ASPNETCORE_ENVIRONMENT=Production
-        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=eCook;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
-        - RABBIT_MQ_SERVER=rabbitmq
+        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=OrderingDb;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
+        - RABBIT_MQ_SERVER=rabbit_mq
         - RABBIT_MQ_USERNAME=guest
         - RABBIT_MQ_PASSWORD=guest
         - RABBITMQSETTINGS__EXCHANGENAME=OfferExchange
@@ -42,7 +42,7 @@ services:
     environment:
         - ASPNETCORE_ENVIRONMENT=Production
         - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=eCook;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
-        - RABBIT_MQ_SERVER=rabbitmq
+        - RABBIT_MQ_SERVER=rabbit_mq
         - RABBIT_MQ_USERNAME=guest
         - RABBIT_MQ_PASSWORD=guest
         - RABBITMQSETTINGS__EXCHANGENAME=OfferExchange
@@ -51,17 +51,17 @@ services:
         - RABBITMQSETTINGS__ROUTEKEY=offer_route
     ports:
         - "4203:80"    
-  # sql:
-  #   image: "mcr.microsoft.com/mssql/server:2022-latest"
-  #   container_name: sql_database_2022
-  #   ports:
-  #     - "1433:1433" 
-  #   environment:
-  #     - ACCEPT_EULA=y
-  #     - SA_PASSWORD=A&VeryComplex123Password
-  # rabbitmq:
-  #   image: rabbitmq:3.13.6-management-alpine
-  #   container_name: 'rabbitmq'
-  #   ports:
-  #     - 5672:5672
-  #     - 15672:15672
+  sql:
+    image: "mcr.microsoft.com/mssql/server:2022-latest"
+    container_name: sqlserver_database_2022
+    ports:
+      - "1433:1433" 
+    environment:
+      - ACCEPT_EULA=y
+      - SA_PASSWORD=A&VeryComplex123Password
+  rabbitmq:
+    image: rabbitmq:3.13.6-management-alpine
+    container_name: rabbit_mq
+    ports:
+      - 5672:5672
+      - 15672:15672
