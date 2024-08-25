@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs/eCook/FileContentIndex
+/CookingService/bin/Debug/net6.0
+/CookingService/obj/Debug/net6.0
+/NotificationService/obj/Debug/net6.0
+/OrderingService/bin/Debug/net6.0
+/OrderingService/obj/Debug/net6.0
