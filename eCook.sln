@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderingService", "OrderingService\OrderingService.csproj", "{112101D9-65D6-4E8C-AB0F-F553E28B5A47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderService", "OrderService\OrderService.csproj", "{112101D9-65D6-4E8C-AB0F-F553E28B5A47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CookingService", "CookingService\CookingService.csproj", "{DCBC6C1D-E3AD-4BFB-BBA2-3245D5FEE11D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KitchenService", "KitchenService\KitchenService.csproj", "{DCBC6C1D-E3AD-4BFB-BBA2-3245D5FEE11D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NotificationService", "NotificationService\NotificationService.csproj", "{7C6529A0-B95D-4B71-814C-644F3DD67CC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentService", "PaymentService\PaymentService.csproj", "{7C6529A0-B95D-4B71-814C-644F3DD67CC2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{DF511D34-F191-4363-939D-616670CD7611}"
 	ProjectSection(SolutionItems) = preProject

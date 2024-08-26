@@ -1,13 +1,13 @@
 version: '3.9'
 services:
-  cooking-service:
+  kitchen-service:
     build:
-        context: ./CookingService
+        context: ./KitchenService
         dockerfile: Dockerfile
-    container_name: CookingService
+    container_name: KitchenService
     environment:
         - ASPNETCORE_ENVIRONMENT=Production
-        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=CookingDb;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
+        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=KitchenService;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
         - RABBIT_MQ_SERVER=rabbit_mq
         - RABBIT_MQ_USERNAME=guest
         - RABBIT_MQ_PASSWORD=guest
@@ -17,14 +17,14 @@ services:
         - RABBITMQSETTINGS__ROUTEKEY=offer_route
     ports:
         - "4201:80"    
-  ordering-service:
+  order-service:
     build:
-        context: ./OrderingService
+        context: ./OrderService
         dockerfile: Dockerfile
-    container_name: OrderingService
+    container_name: OrderService
     environment:
         - ASPNETCORE_ENVIRONMENT=Production
-        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=OrderingDb;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
+        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=OrderService;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
         - RABBIT_MQ_SERVER=rabbit_mq
         - RABBIT_MQ_USERNAME=guest
         - RABBIT_MQ_PASSWORD=guest
@@ -34,14 +34,14 @@ services:
         - RABBITMQSETTINGS__ROUTEKEY=offer_route
     ports:
         - "4202:80"    
-  notification-service:
+  payment-service:
     build:
-        context: ./NotificationService
+        context: ./PaymentService
         dockerfile: Dockerfile
-    container_name: NotificationService
+    container_name: PaymentService
     environment:
         - ASPNETCORE_ENVIRONMENT=Production
-        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=eCook;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
+        - CONNECTIONSTRINGS__DEFAULTCONNECTION=Server=sql_database_2022;Database=PaymentService;User Id=SA;Password=A&VeryComplex123Password;MultipleActiveResultSets=true
         - RABBIT_MQ_SERVER=rabbit_mq
         - RABBIT_MQ_USERNAME=guest
         - RABBIT_MQ_PASSWORD=guest
