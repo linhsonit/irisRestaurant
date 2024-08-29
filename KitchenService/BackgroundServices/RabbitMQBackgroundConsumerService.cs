@@ -104,7 +104,7 @@ namespace KitchenService.BackgroundServices
                         _dbContext.SaveChanges();
 
                         // Payment
-                        var cookService = scope.ServiceProvider.GetService<CookService>();
+                        var cookService = scope.ServiceProvider.GetRequiredService<ICookService>();
                         cookService.PayOrderAsync(order);
                     }
 

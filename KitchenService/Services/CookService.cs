@@ -20,9 +20,9 @@ namespace KitchenService.Services
         {
             var result = _dbContext.Orders.Add(order);
 
-            await _dbContext.SaveChangesAsync();
-
             SendOrderItem(order);
+
+            await _dbContext.SaveChangesAsync();
 
             return result.Entity;
         }
@@ -58,19 +58,19 @@ namespace KitchenService.Services
                 using (var connection = factory.CreateConnection())
                 using (var channel = connection.CreateModel())
                 {
-                    channel.ExchangeDeclare(StaticConfigurationManager.AppSetting["RabbitMqSettings:ExchangeName"],
+                    channel.ExchangeDeclare("PaymentExchange", //StaticConfigurationManager.AppSetting["RabbitMqSettings:ExchangeName"],
                         StaticConfigurationManager.AppSetting["RabbitMqSettings:ExchhangeType"]);
 
-                    channel.QueueDeclare(queue: StaticConfigurationManager.AppSetting["RabbitMqSettings:QueueName"],
+                    channel.QueueDeclare(queue: "payment_queue",// StaticConfigurationManager.AppSetting["RabbitMqSettings:QueueName"],
                         durable: true,
                         exclusive: false,
                         autoDelete: false,
                         arguments: null);
 
                     channel.QueueBind(
-                        queue: StaticConfigurationManager.AppSetting["RabbitMqSettings:QueueName"],
-                        exchange: StaticConfigurationManager.AppSetting["RabbitMqSettings:ExchangeName"],
-                        routingKey: StaticConfigurationManager.AppSetting["RabbitMqSettings:RouteKey"]);
+                        queue: "payment_queue", //StaticConfigurationManager.AppSetting["RabbitMqSettings:QueueName"],
+                        exchange: "PaymentExchange", // StaticConfigurationManager.AppSetting["RabbitMqSettings:ExchangeName"],
+                        routingKey: "payment_route"); // StaticConfigurationManager.AppSetting["RabbitMqSettings:RouteKey"]);
 
                     var orderJson = JsonConvert.SerializeObject(order);
                     var body = Encoding.UTF8.GetBytes(orderJson);
@@ -78,8 +78,8 @@ namespace KitchenService.Services
                     var properties = channel.CreateBasicProperties();
                     properties.Persistent = true;
 
-                    channel.BasicPublish(exchange: StaticConfigurationManager.AppSetting["RabbitMqSettings:ExchangeName"],
-                                         routingKey: StaticConfigurationManager.AppSetting["RabbitMqSettings:RouteKey"],
+                    channel.BasicPublish(exchange: "PaymentExchange",// StaticConfigurationManager.AppSetting["RabbitMqSettings:ExchangeName"],
+                                         routingKey: "payment_route", //StaticConfigurationManager.AppSetting["RabbitMqSettings:RouteKey"],
                                          basicProperties: properties,
                                          body: body);
                     return true;

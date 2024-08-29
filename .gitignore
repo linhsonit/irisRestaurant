@@ -14,3 +14,8 @@
 /OrderService/obj
 /PaymentService/obj
 /PaymentService/bin/Debug/net6.0
+/CommonService/obj
+/CommonService/bin/Debug/net6.0
+/KitchenService/bin/Debug
+/OrderService/bin/Debug
+/PaymentService/bin/Debug

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using PaymentService.BackgroundServices;
 using PaymentService.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<PaymentDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PaymentService"))
     );
+builder.Services.AddHostedService<RabbitMQBackgroundConsumerService>();
 
 var app = builder.Build();
 
